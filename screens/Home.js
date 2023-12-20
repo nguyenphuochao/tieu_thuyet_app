@@ -128,7 +128,9 @@ function Home(props) {
                 console.error('Error fetching product list:', error);
             });
     }, []); // useEffect sẽ chạy một lần khi component được mount
-
+    // navigation
+    const { navigation, route } = props;
+    const {navigate,goBack} = navigation;
     // Chờ api nên hiện loading
     if (isLoading) {
         return (
@@ -141,7 +143,7 @@ function Home(props) {
         <View style={{ paddingLeft: 10, paddingRight: 10, paddingTop: 4, backgroundColor: 'red', height: 200 }}>
             <TextInput style={{ backgroundColor: '#c7c4bb', borderRadius: 20, height: 45 }} placeholder="Nhập nội dung tìm kiếm" />
         </View>
-        <StoryList heading="Tiểu Thuyết Mới Nhất" storyList={newStory} />
+        <StoryList heading="Tiểu Thuyết Mới Nhất" onPress={()=>{navigate('StoryDetail')}} storyList={newStory} />
         <StoryList heading="Ai Cũng Thích Đọc" storyList={reviewStory} />
         <StoryList heading="Truyện Full" storyList={fullStory} />
         <StoryList heading="Truyện Vui" storyList={truyenVui} />
@@ -151,7 +153,7 @@ function Home(props) {
         <StoryList heading="Tiểu Thuyết Xuyên Không" storyList={xuyenKhong} />
         <StoryList heading="Tiểu Thuyết Kiếm Hiệp" storyList={kiemHiep} />
         <StoryList heading="Tiểu Thuyết Thế Giới Thứ Ba" storyList={theGioiThuBa} />
-        <StoryList heading="Tiểu Thuyết Kinh Dị" storyList={kinh} />
+        <StoryList heading="Tiểu Thuyết Kinh Dị" storyList={kinhDi} />
     </ScrollView>
 }
 export default Home;
